@@ -22,11 +22,11 @@ const HomePage = () => {
       sx={{minHeight: "100vh", margin: 0, bgcolor: theme.palette.background.default}}
     >
 
-      <Grid item xs={2}>
+      <Grid item xs={2.5}>
         <Box sx={{height: "30vh", marginTop: "10px"}}></Box>
         <Box sx={{height: "50vh", marginTop: "10px"}}><RankingList/></Box>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={7}>
         <Grid
           container
           columnSpacing={3}
@@ -47,7 +47,7 @@ const HomePage = () => {
         </Grid>
 
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2.5}>
 
         <Box sx={{height: "30vh", marginTop: "10px"}}/>
         <Box sx={{height: "max-content", bgcolor: theme.palette.background.paper, marginTop: "10px"}}><ChatBox/></Box>
