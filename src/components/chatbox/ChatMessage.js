@@ -21,7 +21,7 @@ const ChatMessages = ({avatar, messages, side}) => {
     >
       {side === "left" && (
         <Grid item>
-          <Avatar src={avatar} sx={{width: spacing(4), height: spacing(4)}}/>
+          <Avatar src={avatar} sx={{width: spacing(3), height: spacing(3)}}/>
         </Grid>
       )}
       <Grid item xs={8}>
@@ -30,6 +30,7 @@ const ChatMessages = ({avatar, messages, side}) => {
             <Typography
               align={"left"}
               sx={[{
+                boxSizing: "content-box",
                 padding: "10px",
                 borderRadius: 4,
                 marginBottom: .5,

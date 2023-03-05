@@ -19,7 +19,7 @@ const HomePage = () => {
       rowSpacing={2}
       direction="row"
 
-      sx={{minHeight: "100vh", padding: "", bgcolor: theme.palette.background.default}}
+      sx={{minHeight: "100vh", margin: 0, bgcolor: theme.palette.background.default}}
     >
 
       <Grid item xs={2}>
