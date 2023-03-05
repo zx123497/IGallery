@@ -4,6 +4,7 @@ import * as React from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import SliderCard from "./SliderCard";
 
 /**
  * @return {Swiper} swiper
@@ -17,10 +18,9 @@ const Slider = () => {
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
+      {[1, 2, 3, 4].map((_, index)=>(<SwiperSlide key={index} style={{backgroundColor: "rgba(0,0,0,0)"}}><SliderCard index={index}/></SwiperSlide>))}
+
+
     </Swiper>
   );
 };

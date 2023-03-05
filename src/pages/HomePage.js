@@ -6,8 +6,12 @@ import {Pagination} from "@mui/material";
 import FreeSolo from "../components/Search";
 import Slider from "../components/Slider";
 import RankingList from "../components/RankingList";
+import ChatBox from "../components/chatbox/ChatBox";
+import {useTheme} from "@mui/material/styles";
+// import ChatBox from "../components/chatbox/ChatBox";
 
 const HomePage = () => {
+  const theme = useTheme();
   return (
     <Grid
       container
@@ -15,12 +19,12 @@ const HomePage = () => {
       rowSpacing={2}
       direction="row"
 
-      style={{minHeight: "100vh", padding: ""}}
+      sx={{minHeight: "100vh", padding: "", bgcolor: theme.palette.background.default}}
     >
 
       <Grid item xs={2}>
-        <Box sx={{height: "30vh", bgcolor: "#eed", marginTop: "10px"}}>Logo place</Box>
-        <Box sx={{height: "50vh", bgcolor: "#eed", marginTop: "10px"}}><RankingList/></Box>
+        <Box sx={{height: "30vh", marginTop: "10px"}}></Box>
+        <Box sx={{height: "50vh", marginTop: "10px"}}><RankingList/></Box>
       </Grid>
       <Grid item xs={8}>
         <Grid
@@ -31,8 +35,8 @@ const HomePage = () => {
           alignItems="center"
           style={{minHeight: "100vh"}}
         >
-          <Grid xs={12}><Box sx={{bgcolor: "#eee", height: "30vh"}}><Slider/></Box></Grid>
-          <Grid container xs={12}><Grid xs={9}><h2>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
+          <Grid xs={12}><Box sx={{height: "30vh"}}><Slider/></Box></Grid>
+          <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((_, index) => (
             <Grid item xs={3} key={index}>
               <IgPhoto/>
@@ -46,7 +50,7 @@ const HomePage = () => {
       <Grid item xs={2}>
 
         <Box sx={{height: "30vh", marginTop: "10px"}}/>
-        <Box sx={{height: "50vh", bgcolor: "#eed", marginTop: "10px"}}>chatting room</Box>
+        <Box sx={{height: "max-content", bgcolor: theme.palette.background.paper, marginTop: "10px"}}><ChatBox/></Box>
       </Grid>
 
 
