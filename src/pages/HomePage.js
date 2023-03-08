@@ -8,10 +8,24 @@ import Slider from "../components/Slider";
 import RankingList from "../components/RankingList";
 import ChatBox from "../components/chatbox/ChatBox";
 import {useTheme} from "@mui/material/styles";
+import DataService from "../services/GetDataService";
 // import ChatBox from "../components/chatbox/ChatBox";
 
 const HomePage = () => {
   const theme = useTheme();
+  const [posts, setPosts] = React.useState([]);
+  React.useEffect(()=>{
+    DataService.getDataAsync().then(
+        (res)=>{
+          const temp = [];
+          res.data.forEach((post)=>{
+            temp.push(post.media_url);
+          });
+          setPosts(temp);
+        });
+  }, []);
+
+
   return (
     <Grid
       container
@@ -37,11 +51,12 @@ const HomePage = () => {
         >
           <Grid xs={12}><Box sx={{height: "30vh"}}><Slider/></Box></Grid>
           <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((_, index) => (
+          {posts.map((media, index) => (
             <Grid item xs={3} key={index}>
-              <IgPhoto/>
+              <IgPhoto media={media}/>
             </Grid>
-          ))}
+          ))
+          }
           <Grid container alignItems="center" justifyContent="center" rowSpacing={-5} xs={12}><Pagination count={10} variant="outlined" color="primary" />
           </Grid>
         </Grid>
