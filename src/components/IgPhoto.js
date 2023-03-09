@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const IgPhoto = ({media})=>{
   return (
-    <Box sx={{height: "auto", aspectRatio: "1/1"}} ><img width="100%" height='100%' src={media} loading='lazy'/></Box>
+    <Box sx={{height: "auto", aspectRatio: "1/1"}} ><img width="100%" src={media} loading='lazy'/></Box>
   );
 };
 

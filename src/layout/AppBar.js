@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import ColorModeContext from "../themes/ToggleContext";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -37,6 +38,10 @@ const ResponsiveAppBar=()=> {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const getAuthToken = () => {
+    window.location.href = "https://api.instagram.com/oauth/authorize?client_id=226106916475206&redirect_uri=https://zx123497.github.io/IGallery/&scope=user_profile,user_media&response_type=code";
   };
 
   return (
@@ -110,9 +115,13 @@ const ResponsiveAppBar=()=> {
               </Button>
             ))}
           </Box>
+          <IconButton onClick={getAuthToken} sx={{marginRight: 2}}>
+            <AdminPanelSettingsIcon/>
+          </IconButton>
           <IconButton onClick={colorMode.toggleColorMode} sx={{marginRight: 2}}>
             <WbSunnyIcon/>
           </IconButton>
+
 
           <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
