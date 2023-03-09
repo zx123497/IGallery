@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://localhost:7141",
+  baseURL: "https://igallery.azurewebsites.net",
   headers: {
     "Access-Control-Allow-Origin": "*",
   },

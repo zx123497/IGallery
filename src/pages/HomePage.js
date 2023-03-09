@@ -9,11 +9,14 @@ import RankingList from "../components/RankingList";
 import ChatBox from "../components/chatbox/ChatBox";
 import {useTheme} from "@mui/material/styles";
 import DataService from "../services/GetDataService";
+import TokenService from "../services/TokenService";
 // import ChatBox from "../components/chatbox/ChatBox";
 
 const HomePage = () => {
   const theme = useTheme();
   const [posts, setPosts] = React.useState([]);
+
+  // do update posts
   React.useEffect(()=>{
     DataService.getDataAsync().then(
         (res)=>{
@@ -23,6 +26,19 @@ const HomePage = () => {
           });
           setPosts(temp);
         });
+  }, []);
+
+  // Get OAuth token and call get token
+  React.useEffect(()=>{
+    const rawCode = window.location.search;
+    if (rawCode !== ( "" || null)) {
+      const code = rawCode.replace("code=", "").replace("#_", "");
+      const data = {code: code};
+      console.log(data);
+      // TokenService.getTokenAsync(data).then((res)=>{
+      //   console.log(res);
+      // });
+    }
   }, []);
 
 
