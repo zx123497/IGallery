@@ -9,7 +9,7 @@ import RankingList from "../components/RankingList";
 import ChatBox from "../components/chatbox/ChatBox";
 import {useTheme} from "@mui/material/styles";
 import DataService from "../services/GetDataService";
-import TokenService from "../services/TokenService";
+// import TokenService from "../services/TokenService";
 // import ChatBox from "../components/chatbox/ChatBox";
 
 const HomePage = () => {
@@ -32,7 +32,7 @@ const HomePage = () => {
   React.useEffect(()=>{
     const rawCode = window.location.search;
     if (rawCode !== ( "" || null)) {
-      const code = rawCode.replace("code=", "").replace("#_", "");
+      const code = rawCode.replace("code=", "").replace("?#_", "");
       const data = {code: code};
       console.log(data);
       // TokenService.getTokenAsync(data).then((res)=>{
