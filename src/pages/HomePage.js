@@ -9,16 +9,16 @@ import RankingList from "../components/RankingList";
 import ChatBox from "../components/chatbox/ChatBox";
 import {useTheme} from "@mui/material/styles";
 import DataService from "../services/GetDataService";
-// import TokenService from "../services/TokenService";
+import TokenService from "../services/TokenService";
 // import ChatBox from "../components/chatbox/ChatBox";
 
 const HomePage = () => {
   const theme = useTheme();
   const [posts, setPosts] = React.useState([]);
-
+  const [token, setToken] = React.useState("");
   // do update posts
   React.useEffect(()=>{
-    DataService.getDataAsync().then(
+    DataService.getDataAsync(token).then(
         (res)=>{
           const temp = [];
           res.data.forEach((post)=>{
@@ -26,18 +26,18 @@ const HomePage = () => {
           });
           setPosts(temp);
         });
-  }, []);
+  }, [token]);
 
   // Get OAuth token and call get token
   React.useEffect(()=>{
     const rawCode = window.location.search;
     if (rawCode !== ( "" || null)) {
-      const code = rawCode.replace("code=", "").replace("?#_", "");
-      const data = {code: code};
-      console.log(data);
-      // TokenService.getTokenAsync(data).then((res)=>{
-      //   console.log(res);
-      // });
+      const code = rawCode.replace("?code=", "").replace("#_", "");
+      const data = {"code": code};
+
+      TokenService.getTokenAsync(data).then((res)=>{
+        setToken(res.access_token);
+      });
     }
   }, []);
 
