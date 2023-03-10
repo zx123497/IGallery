@@ -52,11 +52,13 @@ const HomePage = () => {
       sx={{minHeight: "100vh", margin: 0, bgcolor: theme.palette.background.default}}
     >
 
-      <Grid item xs={2.5}>
+      <Grid sx={{[theme.breakpoints.down("md")]: {
+        display: "none",
+      }}} item xs={0} sm={0} md={2.5}>
         <Box sx={{height: "30vh", marginTop: "10px"}}></Box>
         <Box sx={{height: "50vh", marginTop: "10px"}}><RankingList/></Box>
       </Grid>
-      <Grid item xs={7}>
+      <Grid item xs={12} sm={12} md={7}>
         <Grid
           container
           columnSpacing={3}
@@ -67,9 +69,13 @@ const HomePage = () => {
         >
           <Grid xs={12}><Box sx={{height: "30vh"}}><Slider/></Box></Grid>
           <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
-          {posts.map((media, index) => (
-            <Grid item xs={3} key={index}>
+          {posts.length !== 0 ? posts.map((media, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <IgPhoto media={media}/>
+            </Grid>
+          )): [1, 2, 3, 4, 5].map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <IgPhoto />
             </Grid>
           ))
           }
@@ -78,7 +84,7 @@ const HomePage = () => {
         </Grid>
 
       </Grid>
-      <Grid item xs={2.5}>
+      <Grid item xs={12} sm={12} md={2.5}>
 
         <Box sx={{height: "30vh", marginTop: "10px"}}/>
         <Box sx={{height: "max-content", bgcolor: theme.palette.background.paper, marginTop: "10px"}}><ChatBox/></Box>
