@@ -36,6 +36,7 @@ const HomePage = () => {
       const code = rawCode.replace("?code=", "").replace("#_", "");
       const data = {"code": code};
       TokenService.getTokenAsync(data).then((res)=>{
+        console.debug(res.access_token);
         setToken(res.access_token);
       });
     }
