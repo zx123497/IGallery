@@ -16,7 +16,8 @@ const HomePage = () => {
   const theme = useTheme();
   const [posts, setPosts] = React.useState([]);
   const [token, setToken] = React.useState("");
-  // do update posts
+
+  // do update posts, if token changed then do this effect
   React.useEffect(()=>{
     DataService.getDataAsync(token).then(
         (res)=>{
@@ -34,7 +35,6 @@ const HomePage = () => {
     if (rawCode !== ( "" || null)) {
       const code = rawCode.replace("?code=", "").replace("#_", "");
       const data = {"code": code};
-
       TokenService.getTokenAsync(data).then((res)=>{
         setToken(res.access_token);
       });
@@ -43,6 +43,7 @@ const HomePage = () => {
 
 
   return (
+    // layout
     <Grid
       container
       columnSpacing={3}
@@ -51,13 +52,14 @@ const HomePage = () => {
 
       sx={{minHeight: "100vh", margin: 0, bgcolor: theme.palette.background.default}}
     >
-
-      <Grid sx={{[theme.breakpoints.down("md")]: {
-        display: "none",
-      }}} item xs={0} sm={0} md={2.5}>
-        <Box sx={{height: "30vh", marginTop: "10px"}}></Box>
-        <Box sx={{height: "50vh", marginTop: "10px"}}><RankingList/></Box>
+      {/* layout: artist ranking start. invisible if lower than md */}
+      <Grid sx={{[theme.breakpoints.down("md")]: {display: "none"}}} item xs={0} sm={0} md={2.5}>
+        <Box sx={{height: "30vh", marginTop: "10px"}}/>
+        <Box sx={{height: "50vh", marginTop: "10px"}}>
+          <RankingList/>
+        </Box>
       </Grid>
+      {/* layout: main post display. */}
       <Grid item xs={12} sm={12} md={7}>
         <Grid
           container
@@ -67,8 +69,15 @@ const HomePage = () => {
           alignItems="center"
           style={{minHeight: "100vh"}}
         >
-          <Grid xs={12}><Box sx={{height: "30vh"}}><Slider/></Box></Grid>
+          {/* top slider */}
+          <Grid xs={12}>
+            <Box sx={{height: "30vh"}}>
+              <Slider/>
+            </Box>
+          </Grid>
+          {/* artwork topic and search */}
           <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
+          {/* artwork main area */}
           {posts.length !== 0 ? posts.map((media, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <IgPhoto media={media}/>
@@ -79,11 +88,14 @@ const HomePage = () => {
             </Grid>
           ))
           }
-          <Grid container alignItems="center" justifyContent="center" rowSpacing={-5} xs={12}><Pagination count={10} variant="outlined" color="primary" />
+          {/* pagination */}
+          <Grid container alignItems="center" justifyContent="center" rowSpacing={-5} xs={12}>
+            <Pagination count={10} variant="outlined" color="primary" />
           </Grid>
         </Grid>
 
       </Grid>
+      {/* chatbox */}
       <Grid item xs={12} sm={12} md={2.5}>
 
         <Box sx={{height: "30vh", marginTop: "10px"}}/>
