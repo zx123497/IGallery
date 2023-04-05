@@ -5,9 +5,8 @@ import {useTheme} from "@mui/material";
 import PropTypes from "prop-types";
 const SliderCard = ({index}) => {
   const theme = useTheme();
-  return (<Box sx={{height: "100%", width: "100%"}}>
-    <img style={{position: "absolute"}} src="https://www.bcj.com/wp-content/uploads/2018/05/ANSYS_CC_4362_medium.jpg"/>
-    <Box style={{position: "absolute", background: `linear-gradient(to right, ${theme.palette.background.default}, 80%, rgba(0,0,0,0))`}} sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%", width: "30%"}}>
+  return (<Box sx={{bgcolor: theme.palette.background.paper, height: "100%", width: "100%", borderRadius: theme.spacing(2.5)}}>
+    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%", width: "30%", bgcolor: theme.palette.secondary.main, borderRadius: theme.spacing(2.5, 0, 0, 2.5)}}>
       <Typography
         variant="h6"
         noWrap

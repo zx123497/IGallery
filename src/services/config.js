@@ -5,7 +5,7 @@ const instance = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
-  timeout: 30000,
+  timeout: 10000,
 });
 
 instance.interceptors.request.use((request) => {

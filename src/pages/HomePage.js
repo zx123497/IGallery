@@ -15,11 +15,11 @@ import TokenService from "../services/TokenService";
 const HomePage = () => {
   const theme = useTheme();
   const [posts, setPosts] = React.useState([]);
-
+  const [token, setToken] = React.useState("");
 
   // do update posts, if token changed then do this effect
   React.useEffect(()=>{
-    DataService.getDataAsync().then(
+    DataService.getDataAsync(token).then(
         (res)=>{
           const temp = [];
           res.data.forEach((post)=>{
@@ -27,7 +27,7 @@ const HomePage = () => {
           });
           setPosts(temp);
         });
-  }, []);
+  }, [token]);
 
   // Get OAuth token and call get token
   React.useEffect(()=>{
@@ -36,6 +36,8 @@ const HomePage = () => {
       const code = rawCode.replace("?code=", "").replace("#_", "");
       const data = {"code": code};
       TokenService.getTokenAsync(data).then((res)=>{
+        console.debug(res.access_token);
+        setToken(res.access_token);
       });
     }
   }, []);
