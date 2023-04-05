@@ -15,7 +15,6 @@ const Slider = () => {
       spaceBetween={50}
       slidesPerView={1}
       navigation={true} modules={[Navigation]}
-      onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
     >
       {[1, 2, 3, 4].map((_, index)=>(<SwiperSlide key={index} style={{backgroundColor: "rgba(0,0,0,0)"}}><SliderCard index={index}/></SwiperSlide>))}
