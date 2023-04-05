@@ -8,7 +8,7 @@ const TokenService = {
    */
   getTokenAsync: async (data) => {
     try {
-      const response = await instance.post("/Instagram/GetToken", data);
+      const response = await instance.post("/Token/AddNewArtist", data);
       return response.data;
     } catch (error) {
       throw error;

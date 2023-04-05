@@ -7,10 +7,9 @@ const DataService = {
    * @param {string} token
    * @return {JSON} posts data
    */
-  getDataAsync: async (token) => {
+  getDataAsync: async () => {
     try {
-      const config = {headers: {"Authorization": token}};
-      const response = await instance.get("/Instagram/IgData", config);
+      const response = await instance.get("/Instagram/GetAllIgDataFromTokenList");
       return response.data;
     } catch (error) {
       throw error;
