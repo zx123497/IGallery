@@ -8,7 +8,7 @@ import {Box} from "@mui/system";
 import {useTheme} from "@mui/material/styles";
 
 
-const ChatMessages = ({avatar, messages, side}) => {
+const ChatMessages = ({avatar = "", messages = [], side = "left"}) => {
   const msgFirstStyle = (side)=>{
     return side==="right"?{borderTopRightRadius: spacing(2.5)}:{borderTopLeftRadius: spacing(2.5)};
   };
@@ -65,11 +65,6 @@ ChatMessages.propTypes = {
   avatar: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.string),
   side: PropTypes.oneOf(["left", "right"]),
-};
-ChatMessages.defaultProps = {
-  avatar: "",
-  messages: [],
-  side: "left",
 };
 
 export default ChatMessages;

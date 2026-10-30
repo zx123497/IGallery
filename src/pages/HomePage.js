@@ -59,40 +59,40 @@ const HomePage = () => {
         </Box>
       </Grid>
       {/* layout: main post display. */}
-      <Grid item xs={12} sm={12} md={7}>
-        <Grid
-          container
-          columnSpacing={3}
-          rowSpacing={2}
-          direction="row"
-          alignItems="center"
-          style={{minHeight: "100vh"}}
-        >
-          {/* top slider */}
-          <Grid xs={12}>
-            <Box sx={{height: "30vh"}}>
-              <Slider/>
-            </Box>
-          </Grid>
-          {/* artwork topic and search */}
-          <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
-          {/* artwork main area */}
-          {posts.length !== 0 ? posts.map((media, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <IgPhoto media={media}/>
-            </Grid>
-          )): [1, 2, 3, 4, 5].map((_, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <IgPhoto />
-            </Grid>
-          ))
-          }
-          {/* pagination */}
-          <Grid container alignItems="center" justifyContent="center" rowSpacing={-5} xs={12}>
-            <Pagination count={10} variant="outlined" color="primary" />
-          </Grid>
+      <Grid
+        container
+        xs={12}
+        sm={12}
+        md={7}
+        columnSpacing={3}
+        rowSpacing={2}
+        direction="row"
+        alignItems="center"
+        style={{minHeight: "100vh"}}
+      >
+        {/* top slider */}
+        <Grid xs={12}>
+          <Box sx={{height: "30vh"}}>
+            <Slider/>
+          </Box>
         </Grid>
-
+        {/* artwork topic and search */}
+        <Grid container xs={12}><Grid xs={9}><h2 style={{color: theme.palette.text.primary}}>Instagram Artworks</h2></Grid><Grid container justifyContent='end' alignItems="center" xs><Box sx={{height: "5vh", width: "20em"}}><FreeSolo/></Box></Grid></Grid>
+        {/* artwork main area */}
+        {posts.length !== 0 ? posts.map((media, index) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <IgPhoto media={media}/>
+          </Grid>
+        )): [1, 2, 3, 4, 5].map((_, index) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <IgPhoto />
+          </Grid>
+        ))
+        }
+        {/* pagination */}
+        <Grid container alignItems="center" justifyContent="center" rowSpacing={-5} xs={12}>
+          <Pagination count={10} variant="outlined" color="primary" />
+        </Grid>
       </Grid>
       {/* chatbox */}
       <Grid item xs={12} sm={12} md={2.5}>

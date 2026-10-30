@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {useTheme} from "@mui/material";
 import PropTypes from "prop-types";
-const SliderCard = ({index}) => {
+const SliderCard = ({index = 0}) => {
   const theme = useTheme();
   return (<Box sx={{height: "100%", width: "100%"}}>
     <img style={{position: "absolute"}} src="https://www.bcj.com/wp-content/uploads/2018/05/ANSYS_CC_4362_medium.jpg"/>
@@ -31,9 +31,6 @@ const SliderCard = ({index}) => {
 
 SliderCard.propTypes ={
   index: PropTypes.number,
-};
-SliderCard.defaultProps={
-  index: 0,
 };
 
 export default SliderCard;

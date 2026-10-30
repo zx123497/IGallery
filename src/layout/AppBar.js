@@ -15,7 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import ColorModeContext from "../themes/ToggleContext";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [{label: "Home", href: "#"}, {label: "3D Gallery", href: "#gallery"}];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 /**
@@ -96,8 +96,8 @@ const ResponsiveAppBar=()=> {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.label} component="a" href={page.href} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -107,11 +107,12 @@ const ResponsiveAppBar=()=> {
           <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.label}
+                href={page.href}
                 onClick={handleCloseNavMenu}
                 sx={{my: 2, color: "white", display: "block"}}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>

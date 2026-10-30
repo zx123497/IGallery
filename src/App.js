@@ -6,6 +6,9 @@ import Footer from "./layout/Footer";
 import {ThemeProvider, createTheme} from "@mui/material/styles";
 import ColorModeContext from "./themes/ToggleContext";
 
+// three.js and the whole 3D gallery are only downloaded when someone opens it
+const GalleryPage = React.lazy(() => import("./pages/GalleryPage"));
+
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -79,13 +82,25 @@ const App=()=> {
       [mode],
   );
 
+  // simple hash routing: "#gallery" shows the 3D gallery, anything else the home page
+  const [hash, setHash] = React.useState(window.location.hash);
+  React.useEffect(() => {
+    const handleHashChange = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+  const isGallery = hash === "#gallery";
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <div className="App">
-          <ResponsiveAppBar />
-          <HomePage/>
-          <Footer/>
+          {/* the gallery is full screen with its own controls */}
+          {isGallery ? (
+            <React.Suspense fallback={<div style={{position: "fixed", inset: 0, background: "#050505"}} />}>
+              <GalleryPage/>
+            </React.Suspense>
+          ) : <><ResponsiveAppBar /><HomePage/><Footer/></>}
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
